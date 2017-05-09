@@ -77,7 +77,7 @@ class TemplateMatching(object):
 		clusters = [[], [], [], [] , [] , [] , [] , [] , [] , []]
 		for index in range(0, len(self.train_labels)):
 			clusters[self.train_labels[index]].append(self.train_values[index])
-		images_by_template = len(clusters[0]) / templates_number
+		images_by_template = int(len(clusters[0]) / templates_number)
 		for label in range(0, 10):
 			for template in range(0, templates_number):
 				avrage_image = np.zeros(self.train_values[0].shape, np.uint64)
