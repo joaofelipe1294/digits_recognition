@@ -26,23 +26,23 @@ class TemplateMatching(object):
 
 	def apply(self):
 		self.read_values()
-	 	train = self.prepare_values(self.train_values)
-	 	test = self.prepare_values(self.test_values)
-	 	neigh = KNeighborsClassifier(n_neighbors = self.K)
-	 	print('Treinando KNN ...')
-	 	neigh.fit(train, self.train_labels)
-	 	print('KNN treinado')
-	 	print('Classificando imagens ...')
-	 	labels = neigh.predict(test)
-	 	print('Classificacao concluida')
-	 	self.calc_precision(labels)
-	 	self.calc_confusion_matrix(labels)
+		train = self.prepare_values(self.train_values)
+		test = self.prepare_values(self.test_values)
+		neigh = KNeighborsClassifier(n_neighbors = self.K)
+		print('Treinando KNN ...')
+		neigh.fit(train, self.train_labels)
+		print('KNN treinado')
+		print('Classificando imagens ...')
+		labels = neigh.predict(test)
+		print('Classificacao concluida')
+		self.calc_precision(labels)
+		self.calc_confusion_matrix(labels)
 
 	def calc_precision(self, labels):
 		corrects = 0
 		for index in xrange(0 , len(labels)):
-		 	if labels[index] == self.test_labels[index]:
-		 		corrects += 1
+			if labels[index] == self.test_labels[index]:
+				corrects += 1
 		print('Precision : ' + str(float(corrects) / float(len(self.test_labels))))
 
 	def calc_confusion_matrix(self, labels):
