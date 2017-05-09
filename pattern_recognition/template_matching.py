@@ -42,7 +42,7 @@ class TemplateMatching(object):
 
 	def calc_precision(self, labels):
 		corrects = 0
-		for index in xrange(0 , len(labels)):
+		for index in range(0 , len(labels)):
 			if labels[index] == self.test_labels[index]:
 				corrects += 1
 		print('Precision : ' + str(float(corrects) / float(len(self.test_labels))))
@@ -62,7 +62,7 @@ class TemplateMatching(object):
 				if self.train_labels[index] == label:
 					avrage_image += self.train_values[index]
 					count += 1
-			avrage_image /= count
+			avrage_image = avrage_image / count
 			avrage_image = np.array(avrage_image, np.uint8)
 			self.avrage_images.append(avrage_image)
 			self.avrage_labels.append(label)
