@@ -14,7 +14,7 @@ class TemplateMatching(object):
 		prepared_values = []
 		for image in values:
 		 	prepared_values.append(np.ravel(image))
-	 	return prepared_values
+		return prepared_values
 
 	def apply(self):
 	 	train = self.prepare_values(self.train_values)
@@ -29,12 +29,12 @@ class TemplateMatching(object):
 	 	self.calc_precision(labels)
 	 	self.calc_confusion_matrix(labels)
 
- 	def calc_precision(self, labels):
+	def calc_precision(self, labels):
 		corrects = 0
 		for index in xrange(0 , len(labels)):
 		 	if labels[index] == self.test_labels[index]:
 		 		corrects += 1
- 		print('Precision : ' + str(float(corrects) / float(len(self.test_labels))))
+		print('Precision : ' + str(float(corrects) / float(len(self.test_labels))))
 
 	def calc_confusion_matrix(self, labels):
 		confusion_matrix = np.zeros((10,10), np.uint32)
