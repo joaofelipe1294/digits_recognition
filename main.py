@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 from pattern_recognition.template_matching import TemplateMatching
 import sys
+import time
 
 
 train_path = sys.argv[1]
@@ -13,4 +14,4 @@ test_images, test_labels, test_names = load(test_path,  test_path + '.txt')
 start_time = time.time()
 TemplateMatching(train_images, train_labels, test_images, test_labels).apply_with_avrage_images()
 #TemplateMatching(train_images, train_labels, test_images, test_labels).apply()
-print("arquivo treino --- %s seconds ---" % (time.time() - start_time))
+print("executado em  --- %s seconds ---" % (time.time() - start_time))
