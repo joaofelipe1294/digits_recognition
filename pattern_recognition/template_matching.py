@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -8,7 +9,14 @@ class TemplateMatching(object):
 		self.train_labels = train_labels
 		self.test_values = test_values
 		self.test_labels = test_labels
+		self.K = 0
 
+
+	def read_values(self):
+		if sys.version_info[0] == 2:
+			self.K = int(raw_input('K value : '))
+		else:
+			self.K = int(input('K value : '))
 
 	def prepare_values(self, values):
 		prepared_values = []
@@ -17,9 +25,10 @@ class TemplateMatching(object):
 		return prepared_values
 
 	def apply(self):
+		self.read_values()
 	 	train = self.prepare_values(self.train_values)
 	 	test = self.prepare_values(self.test_values)
-	 	neigh = KNeighborsClassifier(n_neighbors=3)
+	 	neigh = KNeighborsClassifier(n_neighbors = self.K)
 	 	print('Treinando KNN ...')
 	 	neigh.fit(train, self.train_labels)
 	 	print('KNN treinado')
@@ -38,7 +47,7 @@ class TemplateMatching(object):
 
 	def calc_confusion_matrix(self, labels):
 		confusion_matrix = np.zeros((10,10), np.uint32)
-		for index in xrange(0, len(self.test_labels)):
+		for index in range(0, len(self.test_labels)):
 			confusion_matrix[self.test_labels[index], labels[index]] += 1
 		print('Confusion Matrix : ')
 		print(confusion_matrix)
